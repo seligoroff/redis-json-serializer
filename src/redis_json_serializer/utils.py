@@ -9,13 +9,13 @@ from typing import Any
 def hash_args(*args: Any, **kwargs: Any) -> str:
     """
     Hash function arguments for cache key generation.
-    
+
     Preserves order of positional arguments to avoid collisions.
-    
+
     Args:
         *args: Positional arguments
         **kwargs: Keyword arguments
-        
+
     Returns:
         SHA1 hash hexdigest
     """
@@ -29,14 +29,14 @@ def hash_args(*args: Any, **kwargs: Any) -> str:
 def default_key_builder(func: Any, *args: Any, **kwargs: Any) -> str:
     """
     Default cache key builder for functions.
-    
+
     Uses module.qualname for stable function identification.
-    
+
     Args:
         func: Function to build key for
         *args: Function positional arguments
         **kwargs: Function keyword arguments
-        
+
     Returns:
         Cache key string
     """

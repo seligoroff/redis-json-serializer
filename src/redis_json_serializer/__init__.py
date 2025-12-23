@@ -5,8 +5,8 @@ This package provides a high-performance JSON serializer built on orjson
 with support for Pydantic models, dataclasses, and custom types.
 """
 
+from .registry import ModelRegistry, register_model
 from .serializer import JsonSerializer
-from .registry import register_model, ModelRegistry
 
 # Условный экспорт AiocacheJsonSerializer (только если aiocache установлен)
 try:

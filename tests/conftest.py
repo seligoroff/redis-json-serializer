@@ -3,14 +3,14 @@ Pytest configuration and shared fixtures for redis-json-serializer tests.
 """
 
 import datetime
-from decimal import Decimal
 from dataclasses import dataclass
+from decimal import Decimal
 from typing import Any
 
 import pytest
 
-from redis_json_serializer import JsonSerializer, register_model, ModelRegistry
-from redis_json_serializer.registry import REGISTERED_MODELS, MODEL_ALIASES
+from redis_json_serializer import JsonSerializer, ModelRegistry, register_model
+from redis_json_serializer.registry import MODEL_ALIASES, REGISTERED_MODELS
 
 try:
     from pydantic import BaseModel
@@ -43,15 +43,15 @@ def serializer_with_namespace():
 def clear_registry():
     """
     Automatically clear model registry before and after each test.
-    
+
     This ensures tests don't interfere with each other.
     """
     # Clear before test
     REGISTERED_MODELS.clear()
     MODEL_ALIASES.clear()
-    
+
     yield
-    
+
     # Clear after test
     REGISTERED_MODELS.clear()
     MODEL_ALIASES.clear()
@@ -74,18 +74,18 @@ if PYDANTIC_AVAILABLE:
             name: str
             email: str
             age: int | None = None
-        
+
         return User
-    
+
     @pytest.fixture
     def unregistered_pydantic_model():
         """Create an unregistered Pydantic model for testing."""
         class UnregisteredUser(BaseModel):
             id: str
             name: str
-        
+
         return UnregisteredUser
-    
+
     @pytest.fixture
     def complex_pydantic_model():
         """Create a complex Pydantic model with nested data."""
@@ -97,7 +97,7 @@ if PYDANTIC_AVAILABLE:
             created_at: datetime.datetime
             tags: list[str]
             metadata: dict[str, Any]
-        
+
         return Product
 
 
@@ -112,7 +112,7 @@ def sample_dataclass():
         name: str
         quantity: int
         price: Decimal
-    
+
     return Item
 
 
@@ -123,7 +123,7 @@ def unregistered_dataclass():
     class UnregisteredItem:
         id: str
         name: str
-    
+
     return UnregisteredItem
 
 
@@ -228,7 +228,7 @@ def pytest_collection_modifyitems(config, items):
     """Skip tests that require missing dependencies."""
     skip_pydantic = pytest.mark.skip(reason="Pydantic not installed")
     skip_pymongo = pytest.mark.skip(reason="pymongo not installed")
-    
+
     for item in items:
         if "requires_pydantic" in item.keywords and not PYDANTIC_AVAILABLE:
             item.add_marker(skip_pydantic)
