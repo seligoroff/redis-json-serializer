@@ -6,7 +6,8 @@ TODO: Обновить примеры после реализации коман
 
 try:
     # Импорты будут использоваться после раскомментирования кода ниже
-    from aiocache import cached, Cache  # noqa: F401
+    from aiocache import Cache, cached  # noqa: F401
+
     from redis_json_serializer.aiocache import AiocacheJsonSerializer  # noqa: F401
 except ImportError:
     print("aiocache not installed. Install with: pip install redis-json-serializer[aiocache]")
@@ -14,6 +15,7 @@ except ImportError:
 
 try:
     from pydantic import BaseModel
+
     from redis_json_serializer import register_model
 except ImportError:
     print("Pydantic not installed. Install with: pip install redis-json-serializer[pydantic]")
@@ -35,22 +37,22 @@ class Product(BaseModel):
 #     endpoint="localhost",
 #     port=6379,
 # )
-# 
-# 
+#
+#
 # @cached(ttl=3600, cache=cache)
 # async def get_product(product_id: str) -> Product:
 #     """Example cached function."""
 #     # Your business logic here
 #     return Product(id=product_id, name="Example Product", price=99.99)
-# 
-# 
+#
+#
 # # Usage
 # import asyncio
-# 
+#
 # async def main():
 #     product = await get_product("123")
 #     print(product)
-# 
+#
 # if __name__ == "__main__":
 #     asyncio.run(main())
 
