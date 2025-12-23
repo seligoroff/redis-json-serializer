@@ -5,8 +5,9 @@ TODO: Обновить примеры после реализации коман
 """
 
 try:
-    from aiocache import cached, Cache
-    from redis_json_serializer.aiocache import AiocacheJsonSerializer
+    # Импорты будут использоваться после раскомментирования кода ниже
+    from aiocache import cached, Cache  # noqa: F401
+    from redis_json_serializer.aiocache import AiocacheJsonSerializer  # noqa: F401
 except ImportError:
     print("aiocache not installed. Install with: pip install redis-json-serializer[aiocache]")
     exit(1)

@@ -20,7 +20,7 @@ data = {
 # TODO: Раскомментировать после реализации
 # packed = serializer.pack(data)
 # print("Packed:", packed)
-# 
+#
 # # Round-trip serialization
 # json_bytes = serializer.dumps(data)
 # unpacked = serializer.loads(json_bytes)

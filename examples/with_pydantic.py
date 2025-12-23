@@ -29,7 +29,7 @@ serializer = JsonSerializer()
 # user = User(id="123", name="Alice", email="alice@example.com")
 # packed = serializer.pack(user)
 # print("Packed:", packed)
-# 
+#
 # # Deserialize
 # unpacked = serializer.unpack(packed)
 # print("Unpacked:", unpacked)
