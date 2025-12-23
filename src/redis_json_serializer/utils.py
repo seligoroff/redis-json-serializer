@@ -23,7 +23,8 @@ def hash_args(*args: Any, **kwargs: Any) -> str:
     args_repr = repr(args).encode("utf-8")
     # Сортируем только kwargs для детерминированности
     kwargs_repr = repr(tuple(sorted(kwargs.items()))).encode("utf-8")
-    return hashlib.sha1(args_repr + kwargs_repr).hexdigest()
+    # SHA1 используется для хеширования ключей кеша, не для криптографии
+    return hashlib.sha1(args_repr + kwargs_repr, usedforsecurity=False).hexdigest()  # noqa: S324
 
 
 def default_key_builder(func: Any, *args: Any, **kwargs: Any) -> str:
