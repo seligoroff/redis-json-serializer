@@ -2,9 +2,6 @@
 
 Fast and secure JSON serializer for Redis caching with Pydantic and dataclass support.
 
-> ⚠️ **Статус проекта**: Это скелетон проекта. Код находится в стадии разработки командой.
-> Для начала работы см. [START_HERE.md](START_HERE.md)
-
 ## Features
 
 - 🚀 **Fast**: Built on top of `orjson` for maximum performance
